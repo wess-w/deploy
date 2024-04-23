@@ -1,0 +1,55 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    name: in-cluster
+  project: infrastructure
+  source:
+    repoURL: https://argoproj.github.io/argo-helm
+    chart: argo-cd
+    targetRevision: 5.20.3
+    helm:
+      values: |-
+        controller:
+          metrics:
+            enabled: true
+        repoServer:
+          metrics:
+            enabled: true
+        server:
+          config:
+            url: https://argocd.saams.co
+          ingress:
+            ingressClassName: "nginx"
+            annotations:
+              cert-manager.io/renew-before: 360h
+              cert-manager.io/cluster-issuer: letsencrypt-prod
+              kubernetes.io/ingress.class: nginx
+              kubernetes.io/tls-acme: "true"
+              nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+              nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+            enabled: true
+            hosts:
+              - argocd.saams.co
+            https: true
+            paths:
+              - /
+            tls:
+              - hosts:
+                  - argocd.saams.co
+                secretName: argocd-tls
+          metrics:
+            enabled: true
+        dex:
+          enabled: false
+        notifications:
+          enabled: false
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - ApplyOutOfSyncOnly=true
