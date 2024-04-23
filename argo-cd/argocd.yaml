@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: argocd
     name: in-cluster
-  project: infrastructure
+  project: default
   source:
     repoURL: https://argoproj.github.io/argo-helm
     chart: argo-cd
