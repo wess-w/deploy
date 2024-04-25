@@ -5,9 +5,13 @@ metadata:
   annotations:
     cert-manager.io/renew-before: 360h
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/use-forwarded-headers: "true"
-    nginx.ingress.kubernetes.io/real-ip-header: "X-Real-IP"
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/target-type: 'ip'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'
+  finalizers:
+    - ingress.k8s.aws/resources
 spec:
   ingressClassName: alb
   rules:
