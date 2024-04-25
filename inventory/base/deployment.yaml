@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: inventory
+  name: inventory
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inventory
+  template:
+    metadata:
+      labels:
+        app: inventory
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - image: 905418008419.dkr.ecr.us-east-1.amazonaws.com/spikeadmin:0.0.1
+          resources:
+            requests:
+              cpu: "50m"          # 50% of a single CPU core
+            limits:
+              cpu: "200m"
+          name: inventory
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+---
+
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: inventory-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: inventory
+  minReplicas: 1                 # Minimum number of replicas
+  maxReplicas: 10                # Maximum number of replicas
+  targetCPUUtilizationPercentage: 60

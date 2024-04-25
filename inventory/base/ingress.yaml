@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: inventory
+  annotations:
+    cert-manager.io/renew-before: 360h
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/use-forwarded-headers: "true"
+    nginx.ingress.kubernetes.io/real-ip-header: "X-Real-IP"
+spec:
+  ingressClassName: alb
+  rules:
+    - host: inventory.saamsksa.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: inventory
+                port:
+                  number: 80
+  tls:
+    - secretName: saamsapp-tls
+      hosts:
+        - inventory.saamsksa.com
