@@ -10,7 +10,7 @@ metadata:
     alb.ingress.kubernetes.io/backend-protocol: HTTP
     alb.ingress.kubernetes.io/target-type: 'ip'
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'
-    alb.ingress.kubernetes.io/subnets: '[subnet-0c7a14c196e761d76,subnet-0173c073e1d31d7a9,subnet-08968acd8ab666264,subnet-065ff620d37991767,subnet-0d849c7747024f078]'
+    alb.ingress.kubernetes.io/subnets: 'subnet-0c7a14c196e761d76,subnet-0173c073e1d31d7a9,subnet-08968acd8ab666264,subnet-065ff620d37991767,subnet-0d849c7747024f078'
   finalizers:
     - ingress.k8s.aws/resources
 spec:
