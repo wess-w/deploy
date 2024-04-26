@@ -5,16 +5,11 @@ metadata:
   annotations:
     cert-manager.io/renew-before: 360h
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/backend-protocol: HTTP
-    alb.ingress.kubernetes.io/target-type: 'ip'
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'
-    alb.ingress.kubernetes.io/subnets: 'subnet-0c7a14c196e761d76,subnet-0173c073e1d31d7a9,subnet-08968acd8ab666264,subnet-065ff620d37991767,subnet-0d849c7747024f078'
-  finalizers:
-    - ingress.k8s.aws/resources
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/use-forwarded-headers: "true"
+    nginx.ingress.kubernetes.io/real-ip-header: "X-Real-IP"
 spec:
-  ingressClassName: alb
+  ingressClassName: nginx
   rules:
     - host: inventory.saamsksa.co
       http:
@@ -26,7 +21,7 @@ spec:
                 name: inventory
                 port:
                   number: 4200
- # tls:
- #   - secretName: saamsapp-tls
- #     hosts:
- #       - inventory.saamsksa.com
+  tls:
+    - secretName: saamsapp-tls
+      hosts:
+        - inventory.saamsksa.com
