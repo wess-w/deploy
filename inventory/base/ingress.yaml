@@ -4,9 +4,8 @@ metadata:
   name: inventory
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: instance
+    alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/subnets: 'subnet-08968acd8ab666264,subnet-0a6e13fd2faeb8d2f'
-    alb.ingress.kubernetes.io/load-balancer-name: alb-0
 spec:
   ingressClassName: alb
   rules:
