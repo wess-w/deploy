@@ -15,4 +15,4 @@ replicas:
 
 images:
   - name: 905418008419.dkr.ecr.us-east-1.amazonaws.com/spikeadmin
-    newTag: 0.1.0
+    newTag: 0.0.5
