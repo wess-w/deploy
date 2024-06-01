@@ -11,18 +11,18 @@ spec:
   rules:
    - http:
       paths:
-      - path: /ordering
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: ordering-api-service
             port:
-              number: 80
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: api-gateway-service
-            port:
-              number: 80
+              number: 8080
+      # - path: /
+      #   pathType: Prefix
+      #   backend:
+      #     service:
+      #       name: api-gateway-service
+      #       port:
+      #         number: 80
 
