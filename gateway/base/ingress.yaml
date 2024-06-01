@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: yourdomain.com
+  - host: saamsksa.com
     http:
       paths:
       - path: /api/ordering
