@@ -9,8 +9,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: saamsksa.com
-    http:
+   - http:
       paths:
       - path: /api/ordering
         pathType: Prefix
