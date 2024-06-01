@@ -7,9 +7,9 @@ spec:
     app: ordering-api
   ports:
     - protocol: TCP
-      port: 7080
+      port: 8080
       targetPort: 8080
-  type: ClusterIP
+  type: NodePort
 # ---
 # apiVersion: v1
 # kind: Service
