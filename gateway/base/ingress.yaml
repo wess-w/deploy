@@ -17,11 +17,7 @@ spec:
               service:
                 name: ordering-api-service
                 port:
-                  number: 8080
-status:
-  loadBalancer:
-    ingress:
-      - hostname: k8s-apps-inventor-38e4fe7beb-1688167226.us-east-1.elb.amazonaws.com                  
+                  number: 80             
       # - path: /
       #   pathType: Prefix
       #   backend:
