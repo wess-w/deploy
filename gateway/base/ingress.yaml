@@ -12,7 +12,7 @@ spec:
   - host: yourdomain.com
     http:
       paths:
-      - path: api/ordering
+      - path: /api/ordering
         pathType: Prefix
         backend:
           service:
