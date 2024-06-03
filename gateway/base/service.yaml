@@ -6,8 +6,7 @@ spec:
   selector:
     app: ordering-api
   ports:
-    - protocol: TCP
-      port: 81
+    - port: 8080
       targetPort: 8080
   type: NodePort
 # ---
