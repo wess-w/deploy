@@ -75,12 +75,12 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-            initialDelaySeconds: 60
-            periodSeconds: 10
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: 8080
+          #   initialDelaySeconds: 60
+          #   periodSeconds: 10
           imagePullPolicy: IfNotPresent
 ---
 
