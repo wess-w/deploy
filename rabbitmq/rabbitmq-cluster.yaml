@@ -8,6 +8,7 @@ spec:
   service:
     type: ClusterIP
   persistence:
+    storageClassName: "ebs.csi.aws.com"
     storage: 20Gi
   resources:
     limits:
