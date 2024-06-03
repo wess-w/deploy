@@ -8,5 +8,4 @@ spec:
   service:
     type: ClusterIP
   persistence:
-    storageClassName: "gp2"
     storage: 2Gi
