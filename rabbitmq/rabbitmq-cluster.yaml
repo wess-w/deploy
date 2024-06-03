@@ -8,7 +8,6 @@ spec:
   service:
     type: ClusterIP
   persistence:
-    storageClassName: "csi-cinder-classic"
     storage: 20Gi
   resources:
     limits:
