@@ -8,5 +8,4 @@ spec:
   service:
     type: ClusterIP
   persistence:
-    storageClassName: efs.csi.aws.com
     storage: 2Gi
