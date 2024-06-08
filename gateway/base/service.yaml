@@ -9,15 +9,15 @@ spec:
     - port: 8070
       targetPort: 8080
   type: NodePort
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: auth-api-service
-spec:
-  selector:
-    app: auth-api
-  ports:
-    - port: 8071
-      targetPort: 8080
-  type: NodePort
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: auth-api-service
+# spec:
+#   selector:
+#     app: auth-api
+#   ports:
+#     - port: 8071
+#       targetPort: 8080
+#   type: NodePort
