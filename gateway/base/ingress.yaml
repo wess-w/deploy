@@ -17,7 +17,7 @@ spec:
                 name: ordering-api-service
                 port:
                   number: 8070             
-        - path: /auth
+        - path: /
           pathType: Prefix
           backend:
             service:

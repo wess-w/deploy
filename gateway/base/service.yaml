@@ -19,5 +19,5 @@ spec:
     app: auth-api
   ports:
     - port: 8071
-      targetPort: 8081
+      targetPort: 8080
   type: NodePort
