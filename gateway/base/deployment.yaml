@@ -1,50 +1,35 @@
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   labels:
-#     app: apigateway
-#   name: apigateway
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       app: apigateway
-#   template:
-#     metadata:
-#       labels:
-#         app: apigateway
-#     spec:
-#       imagePullSecrets:
-#         - name: regcred
-#       containers:
-#         - image: 905418008419.dkr.ecr.us-east-1.amazonaws.com/apigateway:0.0.1
-#           resources:
-#             requests:
-#               cpu: "50m"          # 50% of a single CPU core
-#             limits:
-#               cpu: "200m"
-#           name: apigateway
-#           ports:
-#             - name: http
-#               containerPort: 80
-#               protocol: TCP
-#           imagePullPolicy: IfNotPresent
-# ---
-
-# apiVersion: autoscaling/v1
-# kind: HorizontalPodAutoscaler
-# metadata:
-#   name: apigateway-hpa
-# spec:
-#   scaleTargetRef:
-#     apiVersion: apps/v1
-#     kind: Deployment
-#     name: apigateway
-#   minReplicas: 1                 # Minimum number of replicas
-#   maxReplicas: 10                # Maximum number of replicas
-#   targetCPUUtilizationPercentage: 60
-
-# ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: apigateway
+  name: apigateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apigateway
+  template:
+    metadata:
+      labels:
+        app: apigateway
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - image: 905418008419.dkr.ecr.us-east-1.amazonaws.com/auth-api:0.0.2
+          resources:
+            requests:
+              cpu: "50m"          # 50% of a single CPU core
+            limits:
+              cpu: "200m"
+          name: auth-api
+          ports:
+            - name: http
+              containerPort: 8081
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -74,19 +59,6 @@ spec:
           ports:
             - name: http
               containerPort: 8080
-              protocol: TCP
-          imagePullPolicy: IfNotPresent
-        
-        - image: 905418008419.dkr.ecr.us-east-1.amazonaws.com/auth-api:0.0.2
-          resources:
-            requests:
-              cpu: "50m"          # 50% of a single CPU core
-            limits:
-              cpu: "200m"
-          name: auth-api
-          ports:
-            - name: http
-              containerPort: 8081
               protocol: TCP
           imagePullPolicy: IfNotPresent
 ---
