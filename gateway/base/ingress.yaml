@@ -14,7 +14,7 @@ spec:
           pathType: Prefix
           backend:
               service:
-                name: ordering-api-service
+                name: auth-api-service
                 port:
                   number: 8071             
         # - path: /
