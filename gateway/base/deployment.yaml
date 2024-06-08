@@ -29,52 +29,52 @@ spec:
               containerPort: 8080
               protocol: TCP
           imagePullPolicy: IfNotPresent
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: ordering-api
-  name: ordering-api
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: ordering-api
-  template:
-    metadata:
-      labels:
-        app: ordering-api
-    spec:
-      imagePullSecrets:
-        - name: regcred
-      containers:
-        - image: 905418008419.dkr.ecr.us-east-1.amazonaws.com/ordering-api:0.0.2
-          resources:
-            requests:
-              cpu: "50m"          # 50% of a single CPU core
-            limits:
-              cpu: "200m"
-          name: ordering-api
-          ports:
-            - name: http
-              containerPort: 8080
-              protocol: TCP
-          imagePullPolicy: IfNotPresent
----
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     app: ordering-api
+#   name: ordering-api
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: ordering-api
+#   template:
+#     metadata:
+#       labels:
+#         app: ordering-api
+#     spec:
+#       imagePullSecrets:
+#         - name: regcred
+#       containers:
+#         - image: 905418008419.dkr.ecr.us-east-1.amazonaws.com/ordering-api:0.0.2
+#           resources:
+#             requests:
+#               cpu: "50m"          # 50% of a single CPU core
+#             limits:
+#               cpu: "200m"
+#           name: ordering-api
+#           ports:
+#             - name: http
+#               containerPort: 8080
+#               protocol: TCP
+#           imagePullPolicy: IfNotPresent
+# ---
 
-apiVersion: autoscaling/v1
-kind: HorizontalPodAutoscaler
-metadata:
-  name: ordering-api-hpa
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: ordering-api
-  minReplicas: 1                 # Minimum number of replicas
-  maxReplicas: 10                # Maximum number of replicas
-  targetCPUUtilizationPercentage: 60 
+# apiVersion: autoscaling/v1
+# kind: HorizontalPodAutoscaler
+# metadata:
+#   name: ordering-api-hpa
+# spec:
+#   scaleTargetRef:
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     name: ordering-api
+#   minReplicas: 1                 # Minimum number of replicas
+#   maxReplicas: 10                # Maximum number of replicas
+#   targetCPUUtilizationPercentage: 60 
 
 ---
 
