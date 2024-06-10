@@ -13,4 +13,4 @@ images:
   - name: 905418008419.dkr.ecr.us-east-1.amazonaws.com/ordering-api
     newTag: 0.0.2
   - name: 905418008419.dkr.ecr.us-east-1.amazonaws.com/auth-api
-    newTag: 0.0.8
+    newTag: 0.0.9
