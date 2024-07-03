@@ -11,4 +11,4 @@ commonLabels:
 
 images:
   - name: 905418008419.dkr.ecr.us-east-1.amazonaws.com/ordering-api
-    newTag: o0.4.6
+    newTag: o0.4.7
