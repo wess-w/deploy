@@ -12,6 +12,7 @@ spec:
   tls:
     - hosts:
       - ordering.saamsksa.com
+      secretName: ordering-api-tls-secret
   rules:
     - http:
         paths:             
